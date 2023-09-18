@@ -6,7 +6,15 @@ function PrimaryButton({ children }) {
   }
   return (
     <View style={styles.buttonOuterContainer}>
-      <Pressable onPress={pressHandler} style={styles.buttonInnerContainer} android_ripple={{ color: "#610633" }}>
+      <Pressable
+        onPress={pressHandler}
+        style={({ pressed }) =>
+          pressed
+            ? [styles.buttonInnerContainer, styles.pressed]
+            : styles.buttonInnerContainer
+        }
+        android_ripple={{ color: "#610633" }}
+      >
         <Text style={styles.buttonText}>{children}</Text>
       </Pressable>
     </View>
@@ -29,6 +37,9 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     textAlign: "center",
+  },
+  pressed: {
+    opacity: 0.75,
   },
 });
 
